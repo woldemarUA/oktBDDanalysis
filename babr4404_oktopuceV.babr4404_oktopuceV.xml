@@ -1,0 +1,587 @@
+<?xml version="1.0" encoding="UTF-8"?><database name="babr4404_oktopuceV" schema="babr4404_oktopuceV" type="MySQL - 8.0.36">
+   <tables>
+      <table catalog="babr4404_oktopuceV" name="auth_details" numRows="1" remarks="" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="email" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="hashed_password" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="user_id" nullable="false" remarks="" size="10" type="INT" typeCode="4">
+            <parent catalog="babr4404_oktopuceV" column="id" foreignKey="fk_userID" implied="false" onDeleteCascade="false" table="users"/>
+         </column>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="0" id="4" name="created_at" nullable="true" remarks="" size="19" type="TIMESTAMP" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="0" id="5" name="updated_at" nullable="true" remarks="" size="19" type="TIMESTAMP" typeCode="93"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="fk_user_id" unique="false">
+            <column ascending="true" name="user_id"/>
+         </index>
+         <index name="unique_email" unique="true">
+            <column ascending="true" name="email"/>
+         </index>
+         <index name="user_email" unique="true">
+            <column ascending="true" name="email"/>
+         </index>
+      </table>
+      <table catalog="babr4404_oktopuceV" name="client_types" numRows="2" remarks="" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id" nullable="false" remarks="" size="20" type="BIGINT UNSIGNED" typeCode="-5">
+            <child catalog="babr4404_oktopuceV" column="type_id" foreignKey="clients_type_id_foreign" implied="false" onDeleteCascade="false" table="clients"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="name" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="created_at" nullable="true" remarks="" size="19" type="TIMESTAMP" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="updated_at" nullable="true" remarks="" size="19" type="TIMESTAMP" typeCode="93"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table catalog="babr4404_oktopuceV" name="clients" numRows="1" remarks="" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id" nullable="false" remarks="" size="20" type="BIGINT UNSIGNED" typeCode="-5">
+            <child catalog="babr4404_oktopuceV" column="client_id" foreignKey="fk_client" implied="false" onDeleteCascade="false" table="interventions"/>
+            <child catalog="babr4404_oktopuceV" column="client_id" foreignKey="sites_client_id_foreign" implied="false" onDeleteCascade="true" table="sites"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="type_id" nullable="false" remarks="" size="20" type="BIGINT UNSIGNED" typeCode="-5">
+            <parent catalog="babr4404_oktopuceV" column="id" foreignKey="clients_type_id_foreign" implied="false" onDeleteCascade="false" table="client_types"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="first_name" nullable="true" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="last_name" nullable="true" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="contact_name" nullable="true" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="address" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="postal_code" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="city" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="phone_number" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="email" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="created_at" nullable="true" remarks="" size="19" type="TIMESTAMP" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="11" name="updated_at" nullable="true" remarks="" size="19" type="TIMESTAMP" typeCode="93"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="clients_email_unique" unique="true">
+            <column ascending="true" name="email"/>
+         </index>
+         <index name="clients_type_id_foreign" unique="false">
+            <column ascending="true" name="type_id"/>
+         </index>
+      </table>
+      <table catalog="babr4404_oktopuceV" name="equipment_brands" numRows="57" remarks="" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id" nullable="false" remarks="" size="20" type="BIGINT UNSIGNED" typeCode="-5">
+            <child catalog="babr4404_oktopuceV" column="equipment_brand_id" foreignKey="fk_equipment_brand" implied="false" onDeleteCascade="false" table="equipments"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="name" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="created_at" nullable="true" remarks="" size="19" type="TIMESTAMP" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="updated_at" nullable="true" remarks="" size="19" type="TIMESTAMP" typeCode="93"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table catalog="babr4404_oktopuceV" name="equipment_endroit" numRows="6" remarks="" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT" typeCode="4">
+            <child catalog="babr4404_oktopuceV" column="endroit_id" foreignKey="fk_endroit" implied="false" onDeleteCascade="false" table="equipment_types"/>
+            <child catalog="babr4404_oktopuceV" column="endroit_id" foreignKey="fk_equipment_endroit" implied="false" onDeleteCascade="false" table="equipments"/>
+            <child catalog="babr4404_oktopuceV" column="endroit_id" foreignKey="fk_endroit_type" implied="false" onDeleteCascade="false" table="interventions"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="produit_id" nullable="false" remarks="" size="10" type="INT" typeCode="4">
+            <parent catalog="babr4404_oktopuceV" column="id" foreignKey="fk_produit" implied="false" onDeleteCascade="false" table="equipment_produit"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="name" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="is_location" nullable="true" remarks="" size="1" type="BIT" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="updated_at" nullable="true" remarks="" size="10" type="DATE" typeCode="91"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="created_at" nullable="true" remarks="" size="10" type="DATE" typeCode="91"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="fk_produit" unique="false">
+            <column ascending="true" name="produit_id"/>
+         </index>
+      </table>
+      <table catalog="babr4404_oktopuceV" name="equipment_ext_types" numRows="9" remarks="" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT" typeCode="4">
+            <child catalog="babr4404_oktopuceV" column="unite_exterieur_type_id" foreignKey="fk_exterieur_type" implied="false" onDeleteCascade="false" table="equipments"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="name" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="created_at" nullable="true" remarks="" size="10" type="DATE" typeCode="91"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="updated_at" nullable="true" remarks="" size="10" type="DATE" typeCode="91"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table catalog="babr4404_oktopuceV" name="equipment_int_types" numRows="2" remarks="" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT" typeCode="4">
+            <child catalog="babr4404_oktopuceV" column="unite_interieur_type_id" foreignKey="fk_interieur_type" implied="false" onDeleteCascade="false" table="equipments"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="name" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="created_at" nullable="true" remarks="" size="10" type="DATE" typeCode="91"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="updated_at" nullable="true" remarks="" size="10" type="DATE" typeCode="91"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table catalog="babr4404_oktopuceV" name="equipment_locations" numRows="30" remarks="" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="name" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="true" defaultValue="null" digits="0" id="1" name="id" nullable="false" remarks="" size="20" type="BIGINT UNSIGNED" typeCode="-5">
+            <child catalog="babr4404_oktopuceV" column="location_id" foreignKey="fk_equipment_location" implied="false" onDeleteCascade="false" table="equipments"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="created_at" nullable="true" remarks="" size="10" type="DATE" typeCode="91"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="updated_at" nullable="true" remarks="" size="10" type="DATE" typeCode="91"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table catalog="babr4404_oktopuceV" name="equipment_produit" numRows="3" remarks="" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT" typeCode="4">
+            <child catalog="babr4404_oktopuceV" column="produit_id" foreignKey="fk_produit" implied="false" onDeleteCascade="false" table="equipment_endroit"/>
+            <child catalog="babr4404_oktopuceV" column="produit_id" foreignKey="fk_equipment_produit_type" implied="false" onDeleteCascade="false" table="equipments"/>
+            <child catalog="babr4404_oktopuceV" column="produit_id" foreignKey="fk_produit_type" implied="false" onDeleteCascade="false" table="interventions"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="name" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="created_at" nullable="true" remarks="" size="10" type="DATE" typeCode="91"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="updated_at" nullable="true" remarks="" size="10" type="DATE" typeCode="91"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table catalog="babr4404_oktopuceV" name="equipment_types" numRows="18" remarks="" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id" nullable="false" remarks="" size="20" type="BIGINT UNSIGNED" typeCode="-5">
+            <child catalog="babr4404_oktopuceV" column="equipment_type_id" foreignKey="fk_equipment_type_unite" implied="false" onDeleteCascade="false" table="equipments"/>
+            <child catalog="babr4404_oktopuceV" column="equipment_type_id" foreignKey="fk_equipment_type" implied="false" onDeleteCascade="false" table="interventions"/>
+            <child catalog="babr4404_oktopuceV" column="equipment_type_id" foreignKey="fk_equipment_types_config" implied="false" onDeleteCascade="false" table="interventions_questions_equipment"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="endroit_id" nullable="false" remarks="" size="10" type="INT" typeCode="4">
+            <parent catalog="babr4404_oktopuceV" column="id" foreignKey="fk_endroit" implied="false" onDeleteCascade="false" table="equipment_endroit"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="name" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="is_finalite" nullable="true" remarks="" size="1" type="BIT" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="is_gas" nullable="true" remarks="" size="1" type="BIT" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="is_int" nullable="true" remarks="" size="1" type="BIT" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="is_ext" nullable="true" remarks="" size="1" type="BIT" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="created_at" nullable="true" remarks="" size="19" type="TIMESTAMP" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="updated_at" nullable="true" remarks="" size="19" type="TIMESTAMP" typeCode="93"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="fk_endroit" unique="false">
+            <column ascending="true" name="endroit_id"/>
+         </index>
+      </table>
+      <table catalog="babr4404_oktopuceV" name="equipments" numRows="3" remarks="" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id" nullable="false" remarks="" size="20" type="BIGINT UNSIGNED" typeCode="-5">
+            <child catalog="babr4404_oktopuceV" column="parent_equipment_id" foreignKey="fk_parent_equipment" implied="false" onDeleteCascade="false" table="equipments"/>
+            <child catalog="babr4404_oktopuceV" column="equipment_id" foreignKey="fk_equipmentId" implied="false" onDeleteCascade="true" table="interventions"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="parent_equipment_id" nullable="true" remarks="" size="20" type="BIGINT UNSIGNED" typeCode="-5">
+            <parent catalog="babr4404_oktopuceV" column="id" foreignKey="fk_parent_equipment" implied="false" onDeleteCascade="false" table="equipments"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="produit_id" nullable="false" remarks="" size="10" type="INT" typeCode="4">
+            <parent catalog="babr4404_oktopuceV" column="id" foreignKey="fk_equipment_produit_type" implied="false" onDeleteCascade="false" table="equipment_produit"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="endroit_id" nullable="false" remarks="" size="10" type="INT" typeCode="4">
+            <parent catalog="babr4404_oktopuceV" column="id" foreignKey="fk_equipment_endroit" implied="false" onDeleteCascade="false" table="equipment_endroit"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="site_id" nullable="false" remarks="" size="20" type="BIGINT UNSIGNED" typeCode="-5">
+            <parent catalog="babr4404_oktopuceV" column="id" foreignKey="fk_site" implied="false" onDeleteCascade="false" table="sites"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="location_id" nullable="true" remarks="" size="20" type="BIGINT UNSIGNED" typeCode="-5">
+            <parent catalog="babr4404_oktopuceV" column="id" foreignKey="fk_equipment_location" implied="false" onDeleteCascade="false" table="equipment_locations"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="nfc_tag_id" nullable="false" remarks="" size="20" type="BIGINT UNSIGNED" typeCode="-5">
+            <parent catalog="babr4404_oktopuceV" column="id" foreignKey="fk_nfcTag" implied="false" onDeleteCascade="false" table="nfc_tags"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="gas_type_id" nullable="true" remarks="" size="20" type="BIGINT UNSIGNED" typeCode="-5">
+            <parent catalog="babr4404_oktopuceV" column="id" foreignKey="fk_gas_type" implied="false" onDeleteCascade="false" table="gas_types"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="equipment_type_id" nullable="true" remarks="" size="20" type="BIGINT UNSIGNED" typeCode="-5">
+            <parent catalog="babr4404_oktopuceV" column="id" foreignKey="fk_equipment_type_unite" implied="false" onDeleteCascade="false" table="equipment_types"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="equipment_brand_id" nullable="false" remarks="" size="20" type="BIGINT UNSIGNED" typeCode="-5">
+            <parent catalog="babr4404_oktopuceV" column="id" foreignKey="fk_equipment_brand" implied="false" onDeleteCascade="false" table="equipment_brands"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="installation_date" nullable="false" remarks="" size="19" type="DATETIME" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="11" name="location_precision" nullable="true" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="12" name="serial_number" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="13" name="remote_control_number" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="14" name="gas_weight" nullable="true" remarks="" size="22" type="DOUBLE" typeCode="8"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="15" name="is_plancher_chauffant" nullable="true" remarks="" size="1" type="BIT" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="16" name="is_plancher_raffraichssant" nullable="true" remarks="" size="1" type="BIT" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="17" name="is_radiateurs" nullable="true" remarks="" size="1" type="BIT" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="18" name="ventilo_convecteurs" nullable="true" remarks="" size="1" type="BIT" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="0" digits="0" id="19" name="has_leak_detection" nullable="false" remarks="" size="1" type="BIT" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="20" name="last_leak_detection" nullable="true" remarks="" size="19" type="TIMESTAMP" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="21" name="next_leak_detection" nullable="true" remarks="" size="19" type="TIMESTAMP" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="22" name="unite_exterieur_type_id" nullable="true" remarks="" size="10" type="INT" typeCode="4">
+            <parent catalog="babr4404_oktopuceV" column="id" foreignKey="fk_exterieur_type" implied="false" onDeleteCascade="false" table="equipment_ext_types"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="23" name="equipment_model" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="24" name="leak_detection_periodicity" nullable="true" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="25" name="ballon_capacite" nullable="true" remarks="" size="10" type="INT" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="26" name="unite_interieur_type_id" nullable="true" remarks="" size="10" type="INT" typeCode="4">
+            <parent catalog="babr4404_oktopuceV" column="id" foreignKey="fk_interieur_type" implied="false" onDeleteCascade="false" table="equipment_int_types"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="27" name="created_at" nullable="true" remarks="" size="19" type="TIMESTAMP" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="28" name="updated_at" nullable="true" remarks="" size="19" type="TIMESTAMP" typeCode="93"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="equipments_equipment_brand_id_foreign" unique="false">
+            <column ascending="true" name="equipment_brand_id"/>
+         </index>
+         <index name="equipments_equipment_type_id_foreign" unique="false">
+            <column ascending="true" name="equipment_type_id"/>
+         </index>
+         <index name="equipments_gas_type_id_foreign" unique="false">
+            <column ascending="true" name="gas_type_id"/>
+         </index>
+         <index name="equipments_nfc_tag_id_foreign" unique="false">
+            <column ascending="true" name="nfc_tag_id"/>
+         </index>
+         <index name="equipments_parent_equipment_id_foreign" unique="false">
+            <column ascending="true" name="parent_equipment_id"/>
+         </index>
+         <index name="equipments_site_id_foreign" unique="false">
+            <column ascending="true" name="site_id"/>
+         </index>
+         <index name="fk_equipment_endroit" unique="false">
+            <column ascending="true" name="endroit_id"/>
+         </index>
+         <index name="fk_equipment_location" unique="false">
+            <column ascending="true" name="location_id"/>
+         </index>
+         <index name="fk_equipment_produit_type" unique="false">
+            <column ascending="true" name="produit_id"/>
+         </index>
+         <index name="fk_exterieur_type" unique="false">
+            <column ascending="true" name="unite_exterieur_type_id"/>
+         </index>
+         <index name="fk_interieur_type" unique="false">
+            <column ascending="true" name="unite_interieur_type_id"/>
+         </index>
+      </table>
+      <table catalog="babr4404_oktopuceV" name="files" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="filename" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="filepath" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="mimetype" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="intervention_id" nullable="true" remarks="" size="10" type="INT" typeCode="4">
+            <parent catalog="babr4404_oktopuceV" column="id" foreignKey="fk_intervention_id_files" implied="false" onDeleteCascade="true" table="interventions"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="created_at" nullable="true" remarks="" size="10" type="DATE" typeCode="91"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="updated_at" nullable="true" remarks="" size="10" type="DATE" typeCode="91"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="fk_intervention_id_files" unique="false">
+            <column ascending="true" name="intervention_id"/>
+         </index>
+      </table>
+      <table catalog="babr4404_oktopuceV" name="gas_types" numRows="5" remarks="" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id" nullable="false" remarks="" size="20" type="BIGINT UNSIGNED" typeCode="-5">
+            <child catalog="babr4404_oktopuceV" column="gas_type_id" foreignKey="fk_gas_type" implied="false" onDeleteCascade="false" table="equipments"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="name" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="global_warming_potential" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="created_at" nullable="true" remarks="" size="19" type="TIMESTAMP" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="updated_at" nullable="true" remarks="" size="19" type="TIMESTAMP" typeCode="93"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table catalog="babr4404_oktopuceV" name="intervention_question_types" numRows="66" remarks="" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT" typeCode="4">
+            <child catalog="babr4404_oktopuceV" column="child_q_id" foreignKey="fk_child_question" implied="false" onDeleteCascade="true" table="interventions_dep_questions"/>
+            <child catalog="babr4404_oktopuceV" column="parent_q_id" foreignKey="fk_parent_question" implied="false" onDeleteCascade="true" table="interventions_dep_questions"/>
+            <child catalog="babr4404_oktopuceV" column="question_type_id" foreignKey="fk_intervention_question_types" implied="false" onDeleteCascade="true" table="interventions_questions"/>
+            <child catalog="babr4404_oktopuceV" column="question_type_id" foreignKey="fk_question_types_config" implied="false" onDeleteCascade="false" table="interventions_questions_equipment"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="name" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="checkbox" digits="0" id="2" name="type" nullable="false" remarks="" size="64" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="created_at" nullable="true" remarks="" size="19" type="TIMESTAMP" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="updated_at" nullable="true" remarks="" size="19" type="TIMESTAMP" typeCode="93"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table catalog="babr4404_oktopuceV" name="intervention_types" numRows="7" remarks="" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT" typeCode="4">
+            <child catalog="babr4404_oktopuceV" column="intervention_type_id" foreignKey="fk_intervention_type" implied="false" onDeleteCascade="false" table="interventions"/>
+            <child catalog="babr4404_oktopuceV" column="intervention_type_id" foreignKey="fk_intervention_types_config" implied="false" onDeleteCascade="false" table="interventions_questions_equipment"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="name" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="created_at" nullable="true" remarks="" size="19" type="TIMESTAMP" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="updated_at" nullable="true" remarks="" size="19" type="TIMESTAMP" typeCode="93"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table catalog="babr4404_oktopuceV" name="interventions" numRows="4" remarks="" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT" typeCode="4">
+            <child catalog="babr4404_oktopuceV" column="intervention_id" foreignKey="fk_intervention_id_files" implied="false" onDeleteCascade="true" table="files"/>
+            <child catalog="babr4404_oktopuceV" column="intervention_id" foreignKey="fk_intervention_id" implied="false" onDeleteCascade="true" table="interventions_questions"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="site_id" nullable="false" remarks="" size="20" type="BIGINT UNSIGNED" typeCode="-5">
+            <parent catalog="babr4404_oktopuceV" column="id" foreignKey="fk_site_type" implied="false" onDeleteCascade="false" table="sites"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="equipment_id" nullable="false" remarks="" size="20" type="BIGINT UNSIGNED" typeCode="-5">
+            <parent catalog="babr4404_oktopuceV" column="id" foreignKey="fk_equipmentId" implied="false" onDeleteCascade="true" table="equipments"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="technicien_id" nullable="false" remarks="" size="10" type="INT" typeCode="4">
+            <parent catalog="babr4404_oktopuceV" column="id" foreignKey="fk_technicien" implied="false" onDeleteCascade="false" table="users"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="client_id" nullable="false" remarks="" size="20" type="BIGINT UNSIGNED" typeCode="-5">
+            <parent catalog="babr4404_oktopuceV" column="id" foreignKey="fk_client" implied="false" onDeleteCascade="false" table="clients"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="company_name" nullable="true" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="intervention_date" nullable="false" remarks="" size="10" type="DATE" typeCode="91"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="produit_id" nullable="false" remarks="" size="10" type="INT" typeCode="4">
+            <parent catalog="babr4404_oktopuceV" column="id" foreignKey="fk_produit_type" implied="false" onDeleteCascade="false" table="equipment_produit"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="endroit_id" nullable="false" remarks="" size="10" type="INT" typeCode="4">
+            <parent catalog="babr4404_oktopuceV" column="id" foreignKey="fk_endroit_type" implied="false" onDeleteCascade="false" table="equipment_endroit"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="equipment_type_id" nullable="false" remarks="" size="20" type="BIGINT UNSIGNED" typeCode="-5">
+            <parent catalog="babr4404_oktopuceV" column="id" foreignKey="fk_equipment_type" implied="false" onDeleteCascade="false" table="equipment_types"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="intervention_type_id" nullable="false" remarks="" size="10" type="INT" typeCode="4">
+            <parent catalog="babr4404_oktopuceV" column="id" foreignKey="fk_intervention_type" implied="false" onDeleteCascade="false" table="intervention_types"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="11" name="additional_information" nullable="true" remarks="" size="65535" type="TEXT" typeCode="-1"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="12" name="signature_client" nullable="false" remarks="" size="65535" type="TEXT" typeCode="-1"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="13" name="signature_technicien" nullable="false" remarks="" size="65535" type="TEXT" typeCode="-1"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="14" name="document_upload" nullable="true" remarks="" size="65535" type="TEXT" typeCode="-1"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="15" name="created_at" nullable="true" remarks="" size="19" type="TIMESTAMP" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="16" name="updated_at" nullable="true" remarks="" size="19" type="TIMESTAMP" typeCode="93"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="fk_client" unique="false">
+            <column ascending="true" name="client_id"/>
+         </index>
+         <index name="fk_endroit_type" unique="false">
+            <column ascending="true" name="endroit_id"/>
+         </index>
+         <index name="fk_equipment_type" unique="false">
+            <column ascending="true" name="equipment_type_id"/>
+         </index>
+         <index name="fk_equipmentId" unique="false">
+            <column ascending="true" name="equipment_id"/>
+         </index>
+         <index name="fk_intervention_type" unique="false">
+            <column ascending="true" name="intervention_type_id"/>
+         </index>
+         <index name="fk_produit_type" unique="false">
+            <column ascending="true" name="produit_id"/>
+         </index>
+         <index name="fk_site_type" unique="false">
+            <column ascending="true" name="site_id"/>
+         </index>
+         <index name="fk_technicien" unique="false">
+            <column ascending="true" name="technicien_id"/>
+         </index>
+      </table>
+      <table catalog="babr4404_oktopuceV" name="interventions_dep_questions" numRows="18" remarks="" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="parent_q_id" nullable="false" remarks="" size="10" type="INT" typeCode="4">
+            <parent catalog="babr4404_oktopuceV" column="id" foreignKey="fk_parent_question" implied="false" onDeleteCascade="true" table="intervention_question_types"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="child_q_id" nullable="false" remarks="" size="10" type="INT" typeCode="4">
+            <parent catalog="babr4404_oktopuceV" column="id" foreignKey="fk_child_question" implied="false" onDeleteCascade="true" table="intervention_question_types"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="options" nullable="true" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="created_at" nullable="true" remarks="" size="19" type="DATETIME" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="updated_at" nullable="true" remarks="" size="19" type="DATETIME" typeCode="93"/>
+         <primaryKey column="parent_q_id" sequenceNumberInPK="1"/>
+         <primaryKey column="child_q_id" sequenceNumberInPK="2"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="parent_q_id"/>
+            <column ascending="true" name="child_q_id"/>
+         </index>
+         <index name="fk_child_question" unique="false">
+            <column ascending="true" name="child_q_id"/>
+         </index>
+      </table>
+      <table catalog="babr4404_oktopuceV" name="interventions_questions" numRows="29" remarks="" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="question_type_id" nullable="false" remarks="" size="10" type="INT" typeCode="4">
+            <parent catalog="babr4404_oktopuceV" column="id" foreignKey="fk_intervention_question_types" implied="false" onDeleteCascade="true" table="intervention_question_types"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="response" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="intervention_id" nullable="false" remarks="" size="10" type="INT" typeCode="4">
+            <parent catalog="babr4404_oktopuceV" column="id" foreignKey="fk_intervention_id" implied="false" onDeleteCascade="true" table="interventions"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="parent_id" nullable="true" remarks="" size="10" type="enum('soufflage', 'pompeEau', 'pression', 'etancheite', 'securite', 'resistance', 'depannage')" typeCode="1"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="created_at" nullable="true" remarks="" size="19" type="TIMESTAMP" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="updated_at" nullable="true" remarks="" size="19" type="TIMESTAMP" typeCode="93"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="fk_intervention_id" unique="false">
+            <column ascending="true" name="intervention_id"/>
+         </index>
+         <index name="fk_intervention_question_types" unique="false">
+            <column ascending="true" name="question_type_id"/>
+         </index>
+      </table>
+      <table catalog="babr4404_oktopuceV" name="interventions_questions_equipment" numRows="765" remarks="" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="intervention_type_id" nullable="false" remarks="" size="10" type="INT" typeCode="4">
+            <parent catalog="babr4404_oktopuceV" column="id" foreignKey="fk_intervention_types_config" implied="false" onDeleteCascade="false" table="intervention_types"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="equipment_type_id" nullable="false" remarks="" size="20" type="BIGINT UNSIGNED" typeCode="-5">
+            <parent catalog="babr4404_oktopuceV" column="id" foreignKey="fk_equipment_types_config" implied="false" onDeleteCascade="false" table="equipment_types"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="question_type_id" nullable="false" remarks="" size="10" type="INT" typeCode="4">
+            <parent catalog="babr4404_oktopuceV" column="id" foreignKey="fk_question_types_config" implied="false" onDeleteCascade="false" table="intervention_question_types"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="created_at" nullable="true" remarks="" size="19" type="TIMESTAMP" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="updated_at" nullable="true" remarks="" size="19" type="TIMESTAMP" typeCode="93"/>
+         <primaryKey column="intervention_type_id" sequenceNumberInPK="1"/>
+         <primaryKey column="equipment_type_id" sequenceNumberInPK="2"/>
+         <primaryKey column="question_type_id" sequenceNumberInPK="3"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="intervention_type_id"/>
+            <column ascending="true" name="equipment_type_id"/>
+            <column ascending="true" name="question_type_id"/>
+         </index>
+         <index name="fk_equipment_types_config" unique="false">
+            <column ascending="true" name="equipment_type_id"/>
+         </index>
+         <index name="fk_intervention_types_config" unique="false">
+            <column ascending="true" name="intervention_type_id"/>
+         </index>
+         <index name="fk_question_types_config" unique="false">
+            <column ascending="true" name="question_type_id"/>
+         </index>
+      </table>
+      <table catalog="babr4404_oktopuceV" name="nfc_tags" numRows="6" remarks="" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id" nullable="false" remarks="" size="20" type="BIGINT UNSIGNED" typeCode="-5">
+            <child catalog="babr4404_oktopuceV" column="nfc_tag_id" foreignKey="fk_nfcTag" implied="false" onDeleteCascade="false" table="equipments"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="uuid" nullable="false" remarks="" size="36" type="CHAR" typeCode="1"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="created_at" nullable="true" remarks="" size="19" type="TIMESTAMP" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="updated_at" nullable="true" remarks="" size="19" type="TIMESTAMP" typeCode="93"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="nfc_tags_uuid_unique" unique="true">
+            <column ascending="true" name="uuid"/>
+         </index>
+      </table>
+      <table catalog="babr4404_oktopuceV" name="personal_access_tokens" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id" nullable="false" remarks="" size="20" type="BIGINT UNSIGNED" typeCode="-5"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="tokenable_type" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="tokenable_id" nullable="false" remarks="" size="20" type="BIGINT UNSIGNED" typeCode="-5"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="name" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="token" nullable="false" remarks="" size="64" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="abilities" nullable="true" remarks="" size="65535" type="TEXT" typeCode="-1"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="last_used_at" nullable="true" remarks="" size="19" type="TIMESTAMP" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="expires_at" nullable="true" remarks="" size="19" type="TIMESTAMP" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="created_at" nullable="true" remarks="" size="19" type="TIMESTAMP" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="updated_at" nullable="true" remarks="" size="19" type="TIMESTAMP" typeCode="93"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="personal_access_tokens_token_unique" unique="true">
+            <column ascending="true" name="token"/>
+         </index>
+         <index name="personal_access_tokens_tokenable_type_tokenable_id_index" unique="false">
+            <column ascending="true" name="tokenable_type"/>
+            <column ascending="true" name="tokenable_id"/>
+         </index>
+      </table>
+      <table catalog="babr4404_oktopuceV" name="sessions" numRows="1" remarks="" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="user_id" nullable="true" remarks="" size="20" type="BIGINT UNSIGNED" typeCode="-5"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="ip_address" nullable="true" remarks="" size="45" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="user_agent" nullable="true" remarks="" size="65535" type="TEXT" typeCode="-1"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="payload" nullable="false" remarks="" size="2147483647" type="LONGTEXT" typeCode="-1"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="last_activity" nullable="false" remarks="" size="10" type="INT" typeCode="4"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="sessions_last_activity_index" unique="false">
+            <column ascending="true" name="last_activity"/>
+         </index>
+         <index name="sessions_user_id_index" unique="false">
+            <column ascending="true" name="user_id"/>
+         </index>
+      </table>
+      <table catalog="babr4404_oktopuceV" name="sites" numRows="3" remarks="" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id" nullable="false" remarks="" size="20" type="BIGINT UNSIGNED" typeCode="-5">
+            <child catalog="babr4404_oktopuceV" column="site_id" foreignKey="fk_site" implied="false" onDeleteCascade="false" table="equipments"/>
+            <child catalog="babr4404_oktopuceV" column="site_id" foreignKey="fk_site_type" implied="false" onDeleteCascade="false" table="interventions"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="client_id" nullable="false" remarks="" size="20" type="BIGINT UNSIGNED" typeCode="-5">
+            <parent catalog="babr4404_oktopuceV" column="id" foreignKey="sites_client_id_foreign" implied="false" onDeleteCascade="true" table="clients"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="name" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="address" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="postal_code" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="city" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="phone_number" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="email" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="maintenance_provider" nullable="true" remarks="" size="2147483647" type="LONGTEXT" typeCode="-1"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="created_at" nullable="true" remarks="" size="19" type="TIMESTAMP" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="updated_at" nullable="true" remarks="" size="19" type="TIMESTAMP" typeCode="93"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="sites_client_id_foreign" unique="false">
+            <column ascending="true" name="client_id"/>
+         </index>
+         <index name="sites_email_unique" unique="true">
+            <column ascending="true" name="email"/>
+         </index>
+      </table>
+      <table catalog="babr4404_oktopuceV" name="user_types" numRows="5" remarks="" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT" typeCode="4">
+            <child catalog="babr4404_oktopuceV" column="user_type_id" foreignKey="fk_user_types" implied="false" onDeleteCascade="false" table="users"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="name" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="created_at" nullable="true" remarks="" size="19" type="TIMESTAMP" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="updated_at" nullable="true" remarks="" size="19" type="TIMESTAMP" typeCode="93"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table catalog="babr4404_oktopuceV" name="users" numRows="4" remarks="" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT" typeCode="4">
+            <child catalog="babr4404_oktopuceV" column="user_id" foreignKey="fk_userID" implied="false" onDeleteCascade="false" table="auth_details"/>
+            <child catalog="babr4404_oktopuceV" column="technicien_id" foreignKey="fk_technicien" implied="false" onDeleteCascade="false" table="interventions"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="first_name" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="last_name" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="phone" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="addresse" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="city" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="code_postale" nullable="false" remarks="" size="255" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="user_type_id" nullable="false" remarks="" size="10" type="INT" typeCode="4">
+            <parent catalog="babr4404_oktopuceV" column="id" foreignKey="fk_user_types" implied="false" onDeleteCascade="false" table="user_types"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="created_at" nullable="true" remarks="" size="19" type="TIMESTAMP" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="updated_at" nullable="true" remarks="" size="19" type="TIMESTAMP" typeCode="93"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="fk_user_types" unique="false">
+            <column ascending="true" name="user_type_id"/>
+         </index>
+      </table>
+   </tables>
+</database>
